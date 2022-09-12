@@ -192,7 +192,9 @@ router.get('/:userId/balance', async(req, res) => {
       userId,
     }).sort([['register', -1]]);
 
-    const balance = records.filter(t => t.operation === 'G').reduce((total, t) => total + t.amount, 0);
+    const balance = records.filter(t => t.operation === 'G').reduce((total, t) => {
+      return total + t.amount;
+    } , 0);
 
     res.json({records,balance});
 

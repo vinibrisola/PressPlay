@@ -112,7 +112,7 @@ router.get('/:challengeId/ranking', async(req, res) => {
       operation: ['G', 'L']
     }).populate('userId', 'name photo');
 
-    const trackingByUser = _.chain(trackings).groupBy('userId._id').toArray().map((trackingUser)=> ({
+    const records = _.chain(trackings).groupBy('userId._id').toArray().map((trackingUser)=> ({
       _id: trackingUser[0].userId._id,
       name: trackingUser[0].userId.name,
       photo: trackingUser[0].userId.photo,
@@ -125,10 +125,10 @@ router.get('/:challengeId/ranking', async(req, res) => {
     }, 0);
 
     res.json({
-      challengeDate: challenge.data,
+      challengeDate: challenge.date,
       currentPeriod,
       challengePeriod,
-      trackingByUser,
+      records,
       extraBalance
     })
   }catch(err){
