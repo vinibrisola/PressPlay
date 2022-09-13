@@ -89,7 +89,6 @@ router.post('/tracking', async (req, res) => {
       await new Tracking(req.body).save();
     }
 
-    await new Tracking(req.body).save();
     res.json({message: 'Evento Registrado'});
   }catch(err){
     res.json({error:true, message: err.message});
