@@ -24,6 +24,6 @@ app.use(cors());
 app.use('/user', userRoutes);
 app.use('/challenge', challengeRoutes);
 
-app.listen(8000, function (){
+app.listen(process.env.PORT || 8000, function (){
   console.log('Server is running on port 8000');
 })
